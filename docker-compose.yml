@@ -1,0 +1,26 @@
+version: '3.7'
+
+networks:
+  mantle:
+    name: mantle
+    ipam:
+      config:
+      - subnet: 10.30.30.0/24
+
+services:
+  mantle-front:
+    container_name: mantle-front
+    image: node:8.16.0-alpine
+    entrypoint: /bin/sh -c 'tail -f'
+    working_dir: /ws
+    volumes:
+    - .:/ws
+    ports:
+    - 3003:3003
+    - 4004:4004
+    environment:
+      HOST: 0.0.0.0
+      PORT: 3003
+    networks:
+      mantle:
+        ipv4_address: 10.30.30.2
