@@ -1,0 +1,18 @@
+{
+  "scripts": {
+    "cucumber": "cucumber-js --require cucumber.conf.js --format node_modules/cucumber-pretty --require step-definitions --require-module babel-core/register",
+    "test:chrome": "browser=chrome npm run cucumber",
+    "test:firefox": "browser=firefox npm run cucumber",
+    "test": "npm run test:chrome && npm run test:firefox"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "chai": "^4.2.0",
+    "cucumber": "^5.1.0",
+    "cucumber-pretty": "^1.5.0",
+    "selenium-webdriver": "^4.0.0-alpha.5",
+    "string": "^3.3.3"
+  }
+}
