@@ -21,6 +21,7 @@ services:
     environment:
       HOST: 0.0.0.0
       PORT: 3003
+      VUE_APP_API: https://mantle.madesimplegroup.com
     networks:
       mantle:
         ipv4_address: 10.30.30.2
