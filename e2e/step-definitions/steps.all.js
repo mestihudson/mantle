@@ -4,16 +4,19 @@ import client from '../client.js'
 import { expect } from 'chai'
 
 let page
+let backend = new Backend('')
 
 BeforeAll(() => {
   page = new Page(client.driver)
 })
 
-Given('setup', async () => {
-  await page.open('http://10.30.30.2:3003/')
-  expect(await page.title()).to.be.equal('front')
+Given(/^There is no available company with (\w+) name$/, async (name) => {
+  Backend
 })
 
-When('action', () => {})
+When('I search for name', () => {
+  await page.open(process.env.APP_URL)
+  expect(await page.title()).to.be.equal('Search Available Company')
+})
 
-Then('verification', () => {})
+Then(/^I see that name (is|is not) available$/, (availability) => {})
