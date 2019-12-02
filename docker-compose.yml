@@ -18,10 +18,13 @@ services:
     ports:
     - 3003:3003
     - 4004:4004
+    - 5005:5005
     environment:
       HOST: 0.0.0.0
       PORT: 3003
-      VUE_APP_API: https://mantle.madesimplegroup.com
+      API_PRO: https://mantle.madesimplegroup.com
+      API_STG: http://localhost:6006
+      VUE_APP_API: http://mantle-e2e:6006
     networks:
       mantle:
         ipv4_address: 10.30.30.2
@@ -30,12 +33,16 @@ services:
     image: node:10.17.0-alpine
     container_name: mantle-e2e
     working_dir: /ws/e2e
-    entrypoint: /bin/sh -c 'npm i; tail -f'
+    entrypoint: /bin/sh -c 'npm i && npm run json-server; tail -f'
+    ports:
+    - 6006:6006
     volumes:
     - .:/ws
     environment:
       TZ: BRT3BRST,M11.1.6/23:59:59,M2.3.6/23:59:59
       APP_URL: http://10.30.30.2:3003/
+      HOST: 0.0.0.0
+      PORT: 6006
     networks:
       mantle:
         ipv4_address: 10.30.30.3
@@ -50,6 +57,8 @@ services:
     networks:
       mantle:
         ipv4_address: 10.30.30.4
+    depends_on:
+    - mantle-front
 
   mantle-firefox:
     container_name: mantle-firefox
@@ -62,6 +71,8 @@ services:
     networks:
       mantle:
         ipv4_address: 10.30.30.5
+    depends_on:
+    - mantle-front
 
   mantle-chrome:
     container_name: mantle-chrome
@@ -74,4 +85,6 @@ services:
     networks:
       mantle:
         ipv4_address: 10.30.30.6
+    depends_on:
+    - mantle-front
 

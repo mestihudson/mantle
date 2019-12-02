@@ -28,12 +28,8 @@ export default {
         if (data.result === 'available') {
           self.message = `${self.criteria} is available!`
           self.success = true
-        }
-        if (
-          Array.isArray(data.result) &&
-          data.result.length > 0
-        ) {
-          self.message = `${self.criteria} (${data.result[0]}) is not available!`
+        } else {
+          self.message = `${self.criteria} is not available! It has ${data.result} code.`
           self.alert = true
         }
       })
