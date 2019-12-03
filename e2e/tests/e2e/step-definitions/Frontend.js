@@ -1,4 +1,4 @@
-import { By, Key } from 'selenium-webdriver'
+import { By, Key, until } from 'selenium-webdriver'
 
 import client from '../client.js'
 
@@ -22,14 +22,18 @@ export default class Frontend {
   }
 
   async success() {
-    const element = await this.driver
-      .findElement(By.css(`[data-output='MessageSuccess']`))
+    const element = await this.driver.wait(until.elementLocated(
+        By.css(`[data-output='MessageSuccess']`)
+      )
+    )
     return element.getText()
   }
 
   async alert() {
-    const element = await this.driver
-      .findElement(By.css(`[data-output='MessageAlert']`))
+    const element = await this.driver.wait(until.elementLocated(
+        By.css(`[data-output='MessageAlert']`)
+      )
+    )
     return element.getText()
   }
 }

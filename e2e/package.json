@@ -1,9 +1,9 @@
 {
   "scripts": {
-    "cucumber": "cucumber-js --require cucumber.conf.js --format node_modules/cucumber-pretty --require step-definitions --require-module babel-core/register",
+    "cucumber": "cucumber-js --require tests/e2e/cucumber.conf.js --format node_modules/cucumber-pretty --require tests/e2e/step-definitions --require-module babel-core/register tests/e2e/features",
     "test:chrome": "browser=chrome npm run cucumber",
     "test:firefox": "browser=firefox npm run cucumber",
-    "json-server": "json-server --routes routes.json --port $PORT --host $HOST db.json --watch"
+    "json-server": "json-server --routes tests/e2e/routes.json --port $PORT --host $HOST tests/e2e/db.json --watch"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

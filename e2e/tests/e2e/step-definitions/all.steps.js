@@ -17,17 +17,16 @@ const companies = {
 
 BeforeAll(() => {
   frontend = new Frontend()
-  backend = new Backend('/ws/e2e/db.json')
+  backend = new Backend('/ws/e2e/tests/e2e/db.json')
 })
 
 Given(/^There (is|isn't) available company with name (.+)$/, async (
   availability, name
 ) => {
-  await backend.register(
-    availability === 'is'
-      ? { results: { result: 'available' } }
-      : { results: { result: companies[name] } }
-  )
+  const db = availability === 'is'
+    ? { results: { result: 'available' } }
+    : { results: { result: companies[name] } }
+  await backend.register(db)
 })
 
 When(/^I search for name (.+)$/, async (name) => {
