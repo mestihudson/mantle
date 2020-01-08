@@ -1,17 +1,18 @@
 {
   "scripts": {
-    "cucumber": "cucumber-js --require cucumber.conf.js --format node_modules/cucumber-pretty --require step-definitions --require-module babel-core/register",
+    "cucumber": "cucumber-js --require cucumber.conf.js --format node_modules/cucumber-pretty --require step-definitions --require-module @babel/register",
     "test:chrome": "browser=chrome npm run cucumber",
     "test:firefox": "browser=firefox npm run cucumber",
     "json-server": "json-server --routes routes.json --port $PORT --host $HOST db.json --watch"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
-    "babel-preset-env": "^1.7.0",
+    "@babel/core": "^7.7.7",
+    "@babel/node": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "@babel/register": "^7.7.7",
     "chai": "^4.2.0",
-    "cucumber": "^5.1.0",
-    "cucumber-pretty": "^1.5.0",
+    "cucumber": "^6.0.5",
+    "cucumber-pretty": "^6.0.0",
     "json-server": "^0.15.1",
     "selenium-webdriver": "^4.0.0-alpha.5",
     "string": "^3.3.3"
